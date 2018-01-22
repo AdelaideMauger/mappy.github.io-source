@@ -6,12 +6,12 @@ Tags: french,JavaScript,NodeJS,Backbone
 Summary: Comment a t'on réécrit une librairie isomorphique Backbone maison ?
 Status: draft
 
-Cet article fait écho a [Backbone isomorphique maison : pourquoi ?](/pourquoi-backbone-isomorphique.html). Celui-ci va présenter comment AMIB a été construit.
+Cet article fait écho a [Backbone isomorphique maison : pourquoi ?](/pourquoi-backbone-isomorphique.html) Celui-ci va présenter comment AMIB a été construit.
 
 La première difficulté était déjà de définir l'attendu. Quel code souhaitions-nous écrire ? Nous n'avons pas commencé par les tests contrairement à nos habitudes. Notre objectif était de mesurer rapidement si nous étions sur une piste intéressante, pour éventuellement l'abandonner et éviter de gaspiller notre temps.
 
 Nous savions que les interactions allaient se présenter de cette manière
-![première idée](images/javascript/use-case.png)
+![première idée](/images/javascript/use-case.png)
 
 Nous avons donc commencé par écrire :
 
@@ -24,7 +24,7 @@ L'intérêt de faire fonctionner ce moteur de rendu avec des modèles asynchrone
  
 
 La copie d'écran annotée en bleu ci-dessous montre l'imbrication des composants entre eux.
-![](images/javascript/component.png)
+![](/images/javascript/component.png)
 
 Comme Backbone ne fonctionne pas sous NodeJS à cause de sa dépendance avec JQuery (et l'usage du DOM), nous avons [surchargé/bouchonné les méthodes voulues](https://github.com/Mappy/amib/blob/73ac67cb25f336374a03cf26745d99f80667f927/nodify-backbone.js). Nous avons donc pu exécuter une vue Backbone côté serveur. L'astuce de la [ré-implémentation de setElement](http://backbonejs.org/docs/backbone.html#section-162) permet d'avoir la même interface de sortie. La différence porte juste sur la manière de retourner la vue Backbone afin qu'elle soit [ajoutée soit au DOM dans le navigateur](https://github.com/Mappy/amib/blob/73ac67cb25f336374a03cf26745d99f80667f927/render.js#L164) soit [dans la réponse sous NodeJS](https://github.com/Mappy/amib/blob/73ac67cb25f336374a03cf26745d99f80667f927/render.js#L148).
 
@@ -36,11 +36,11 @@ Ci-dessous les exemples de la vraie vie :
 
 [Sans JS : en mode SEO](https://fr.mappybugfix.com/itineraire/paris/lyon)
 
-![Sans JS : en mode SEO](images/javascript/isomorph-no-js.png.png)
+![Sans JS : en mode SEO](/images/javascript/isomorph-no-js.png.png)
 
 [Avec JS : en mode interaction utilisateur](https://fr.mappybugfix.com/#/13/M2/TItinerary/IFRParis%2075001-75116|TOLyon%2069001-69009|MOvoiture|PRcar|RI0/N151.12061,6.11309,3.59153,47.33409/Z4/)
 
-![Avec JS : en mode interaction utilisateur](images/javascript/isomorph-w-js.png)
+![Avec JS : en mode interaction utilisateur](/images/javascript/isomorph-w-js.png)
 
 Vous pouvez noter de subtiles différences : l'absence de carte ou de barre de catégories en version SEO.
 
